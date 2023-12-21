@@ -1,0 +1,22 @@
+---
+# tasks file for logs
+
+
+# - name: Fetch the log file
+#   fetch:
+#     src: C:/Windows/System32/winevt/Logs/Security.evtx
+#     dest: /home/bjgomes/ansible/shared_files/system_log.txt
+#     flat: yes
+
+
+
+- name: Slurp the log file
+  slurp:
+    src: "/home/bjgomes/ansible/shared_files/system_log.txt"
+  delegate_to: localhost
+  register: log_contents
+
+
+- name: Print the log file
+  debug:
+    msg: "{{ log_contents['content'] | b64decode }}"

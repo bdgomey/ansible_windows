@@ -1,10 +1,10 @@
 - name: windows ansible testing
   hosts: all
   roles:
-    - create_Domain
-    - read_csv-create_user
-    - modifyAD
-
+    # - create_Domain
+    # - read_csv-create_user
+    # - modifyAD
+    - logs
 
 # new role to play ps1 script for AD vulnerability
 
