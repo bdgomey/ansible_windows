@@ -1,0 +1,5 @@
+---
+# tasks file for modifyAD
+- name: Run AD modificatioin script
+  ansible.windows.win_powershell:
+    script: /home/bjgomes/ansible/shared_files/modifyAD.ps1

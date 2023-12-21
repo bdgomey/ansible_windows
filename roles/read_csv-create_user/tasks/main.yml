@@ -1,0 +1,42 @@
+---
+# tasks file for read_csv
+- name: Read CSV
+  community.general.read_csv:
+    path: "/home/bjgomes/ansible/shared_files/users.csv"
+  delegate_to: localhost
+  register: userlist
+
+
+- name: Create group with delete protection enabled and custom attributes
+  community.windows.win_domain_group:
+    name: "{{ item }}"
+    scope: domainlocal
+    category: security
+    attributes:
+      mail: helpdesk@cyber.com
+      wWWHomePage: www.cyber.com
+    ignore_protection: yes
+  with_items:
+    - Employees
+    - IT
+    - Engineers 
+    - Developers 
+    - Security 
+    - Sales 
+    - Marketing 
+    - Finance
+
+- name: Create User based on CSV
+  microsoft.ad.user:
+    name: "{{ user.name }}"
+    firstname: "{{ user.firstname }}"
+    surname: "{{ user.surname }}"
+    company: "{{ user.company }}"
+    password: "{{ user.password }}"
+    state: present
+    groups:
+      set:
+      - "{{ user.groups }}"
+  loop: "{{ userlist.list }}"
+  loop_control:
+    loop_var: user

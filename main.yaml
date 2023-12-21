@@ -2,9 +2,11 @@
   hosts: all
   roles:
     - create_Domain
-    - read_csv
-    - copy_files
+    - read_csv-create_user
+    - modifyAD
 
+
+# new role to play ps1 script for AD vulnerability
 
 
 
