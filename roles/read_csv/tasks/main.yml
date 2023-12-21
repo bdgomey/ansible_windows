@@ -1,0 +1,22 @@
+---
+# tasks file for read_csv
+- name: Read CSV
+  community.general.read_csv:
+    path: "{{ role_path }}/files/users.csv"
+  delegate_to: localhost
+  register: userlist
+
+- name: Create User based on CSV
+  microsoft.ad.user:
+    name: "{{ user.name }}"
+    firstname: "{{ user.firstname }}"
+    surname: "{{ user.surname }}"
+    company: "{{ user.company }}"
+    password: "%Pl^lEd(i9"
+    state: present
+    groups:
+      set:
+      - "{{ user.groups }}"
+  loop: "{{ userlist.list }}"
+  loop_control:
+    loop_var: user

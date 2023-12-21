@@ -1,0 +1,13 @@
+- name: windows ansible testing
+  hosts: all
+  roles:
+    - create_Domain
+    - read_csv
+    - copy_files
+
+
+
+
+# OU=Domain Controllers,DC=cyber,DC=com
+
+
