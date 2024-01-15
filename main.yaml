@@ -2,9 +2,13 @@
   hosts: all
   roles:
     # - create_Domain
-    # - read_csv-create_user
-    # - modifyAD
-    - logs
+    - read_csv-create_user
+    - modifyAD
+    # - logs
+
+  # tasks:
+  # - name: Example from an Ansible Playbook
+  #   win_ping:
 
 # new role to play ps1 script for AD vulnerability
 

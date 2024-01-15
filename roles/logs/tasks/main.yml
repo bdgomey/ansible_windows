@@ -12,7 +12,7 @@
 
 - name: Slurp the log file
   slurp:
-    src: "/home/bjgomes/ansible/shared_files/system_log.txt"
+    src: "/home/adminuser/ansible_windows/shared_files/system_log.txt"
   delegate_to: localhost
   register: log_contents
 

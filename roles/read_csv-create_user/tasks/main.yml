@@ -2,7 +2,7 @@
 # tasks file for read_csv
 - name: Read CSV
   community.general.read_csv:
-    path: "/home/bjgomes/ansible/shared_files/users.csv"
+    path: "/home/adminuser/ansible_windows/shared_files/users.csv"
   delegate_to: localhost
   register: userlist
 
@@ -10,7 +10,8 @@
 - name: Create group with delete protection enabled and custom attributes
   community.windows.win_domain_group:
     name: "{{ item }}"
-    scope: domainlocal
+    scope: global
+    domain_server: skillcloud.com
     category: security
     attributes:
       mail: helpdesk@cyber.com
@@ -28,6 +29,7 @@
 
 - name: Create User based on CSV
   microsoft.ad.user:
+    path: ou="{{ user.groups }}" , dc=skillcloud, dc=com
     name: "{{ user.name }}"
     firstname: "{{ user.firstname }}"
     surname: "{{ user.surname }}"
