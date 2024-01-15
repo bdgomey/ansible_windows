@@ -1,0 +1,6 @@
+
+winrm set winrm/config/service/auth '@{Basic="true"}'
+
+winrm set winrm/config/service '@{AllowUnencrypted="true"}'
+
+New-NetFirewallRule -Name "WinRM HTTP" -DisplayName "WinRM HTTP" -Enabled True -Profile Any -Action Allow -Direction Inbound -LocalPort 5985 -Protocol TCP
